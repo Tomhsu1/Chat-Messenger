@@ -8,7 +8,7 @@ import { AlertController } from 'ionic-angular';
 })
 export class HomePage {
 
-  username:any;
+  
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
@@ -18,14 +18,45 @@ export class HomePage {
     let prompt = this.alertCtrl.create({
       title: 'Enter Information',
       inputs: [{
-        name: 'username',
-        placeholder: 'Username'
+        name: 'email',
+        placeholder: 'Email Address'
       },
       {
         name: 'password',
         placeholder: 'Password',
         type: 'password'
       }],
+      buttons: [{
+        text: 'Login',
+      },
+      {
+        text: 'Cancel',
+        }],
     });
-}
-}
+    prompt.present();
+    }
+
+    makeAccount() {
+      let prompt = this.alertCtrl.create({
+        title: 'Enter Information',
+        inputs: [{
+          name: 'email',
+          placeholder: 'Email Address'
+        },
+        {
+          name: 'password',
+          placeholder: 'Password',
+          type: 'password'
+        }],
+        buttons: [{
+          text: 'Create Account',
+        },
+        {
+          text: 'Cancel',
+        }],
+      });
+      prompt.present();
+    }
+  }
+
+

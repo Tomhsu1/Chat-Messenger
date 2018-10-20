@@ -23,8 +23,8 @@ export class LoginScreenPage {
     console.log('ionViewDidLoad LoginScreenPage');
   }
 
-  // logout() {
-  //   this.navCtrl.push("homepage");
-  // }
+  logout() {
+    this.navCtrl.popToRoot();
+  }
 
 }
