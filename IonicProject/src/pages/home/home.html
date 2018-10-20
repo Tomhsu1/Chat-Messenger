@@ -6,11 +6,25 @@
 -->
 <ion-header>
 
-        <ion-navbar>
-          <ion-title>HomePage</ion-title>
-        </ion-navbar>
+  <ion-navbar>
+    <ion-title>HomePage</ion-title>
+  </ion-navbar>
       
-      </ion-header>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+      apiKey: "AIzaSyBXLE79PVPwj5uEfQVxVagmL5vnUGg_WfU",
+      authDomain: "chat-messenger-5c.firebaseapp.com",
+      databaseURL: "https://chat-messenger-5c.firebaseio.com",
+      projectId: "chat-messenger-5c",
+      storageBucket: "chat-messenger-5c.appspot.com",
+      messagingSenderId: "154690224363"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
+</ion-header>
       
       
       <ion-content padding>
@@ -18,6 +32,7 @@
       
       <p> Log in using gmail or make an account with us! </p>
       
-      <button ion-button icon-only (click) = "login()"> Login </button>
-      
-      </ion-content>
+      <button ion-button (click) = "login()"> Login </button>
+      <button ion-button (click) = "makeAccount()"> Make an Account </button>
+      <button ion-button (click) = "this.navCtrl.push('LoginScreenPage')"> Test to Login Screen </button>
+    </ion-content>
