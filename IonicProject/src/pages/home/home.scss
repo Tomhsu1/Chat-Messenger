@@ -1,3 +1,17 @@
 page-home {
+   background-color: rgb(184, 125, 231); 
+.msg {
+    padding : 1em;
+    margin: em 0; 
+    background-color: rgb(16, 233, 248);
+    width: 20%;
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+    border-style: double;
+}
+input:not(:placeholder-shown) + .msg {
+    opacity: 1;
+}
+
 
 }
