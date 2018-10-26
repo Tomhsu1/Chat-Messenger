@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the LoginScreenPage page.
@@ -8,6 +9,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
+export class User {
+  email: string;
+  password: string;
+}
+
 @IonicPage()
 @Component({
   selector: 'page-login-screen',
@@ -15,7 +21,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginScreenPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public user:User = new User();
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fAuth: AngularFireAuth) {
     
   }
 
@@ -23,8 +31,19 @@ export class LoginScreenPage {
     console.log('ionViewDidLoad LoginScreenPage');
   }
 
-  logout() {
-    this.navCtrl.popToRoot();
-  }
+  async login() {
+    try {
+      var r = await this.fAuth.auth.signInWithEmailAndPassword(
+        this.user.email,
+        this.user.password
+      );
+      if (r) {
+        console.log("Successfully logged in!");
+        this.navCtrl.setRoot('HomePage');
+      }
 
+    } catch (err) {
+      console.error(err);
+    }
+  }
 }
