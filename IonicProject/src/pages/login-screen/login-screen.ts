@@ -39,7 +39,7 @@ export class LoginScreenPage {
       );
       if (r) {
         console.log("Successfully logged in!");
-        this.navCtrl.setRoot('HomePage');
+        this.navCtrl.push('HomePage');
       }
 
     } catch (err) {
