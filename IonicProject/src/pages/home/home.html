@@ -24,11 +24,19 @@
       firebase.initializeApp(config);
     </script>
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
+
+    <script>
+      var picture = "Tom";
+      document.getElementById("name").innerHTML = Name; 
+      </script>
+
+      
+
 </ion-header>
       
       
       <ion-content padding>
-
+        <ion-spinner name="bubbles"></ion-spinner>
       
       <p> Log in using gmail or make an account with us! </p>
       <input placeholder = " Start typing to see trick...">
@@ -37,4 +45,21 @@
       <button ion-button (click) = "login()"> Login </button>
       <button ion-button (click) = "makeAccount()"> Make an Account </button>
       <button ion-button (click) = "this.navCtrl.push('LoginScreenPage')"> Test to Login Screen </button>
+    
+     <div><button (click)="myFunction()">Try it</button></div> 
+
+     <ion-icon class = "apple" name = "logo-apple" ></ion-icon>
+
+
+ 
+      <ion-item>
+        <ion-range [(ngModel)]="singleValue" color="danger" pin="true"></ion-range>
+      </ion-item>
+    
+      
+
+    
+      
+
+
     </ion-content>
