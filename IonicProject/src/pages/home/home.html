@@ -33,7 +33,15 @@
       
 
 </ion-header>
-      
+
+<ion-scroll scrollX="true">
+</ion-scroll>
+
+<ion-scroll scrollY="true">
+</ion-scroll>
+
+<ion-scroll scrollX="true" scrollY="true">
+</ion-scroll>
       
       <ion-content padding>
         <ion-spinner name="bubbles"></ion-spinner>
@@ -57,7 +65,9 @@
       </ion-item>
     
       
-
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
     
       
 
