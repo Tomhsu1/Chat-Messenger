@@ -14,6 +14,14 @@ export class HomePage {
 
   }
 
+  myFunction() {
+    var x = document.createElement("IMG");
+    x.setAttribute("src", "/assets/imgs/Tom.png");
+    x.setAttribute("width", "304");
+    x.setAttribute("height", "228");
+    document.body.appendChild(x);
+  }
+
   login() {
     let prompt = this.alertCtrl.create({
       title: 'Enter Information',
