@@ -25,6 +25,10 @@ export class HomePage {
     this.navCtrl.push('LoginScreenPage');
     }
 
+    landing() {
+      this.navCtrl.push('LandingPage');
+    }
+
     makeAccount() {
       // let prompt = this.alertCtrl.create({
       //   title: 'Enter Information',

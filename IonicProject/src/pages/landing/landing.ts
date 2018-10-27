@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
@@ -16,7 +16,29 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class LandingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fAuth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fAuth: AngularFireAuth, public alertCtrl: AlertController) {
+  }
+
+  newChat() {
+    let prompt = this.alertCtrl.create({
+      title: 'New Message',
+      inputs: [{
+        name: 'email',
+        type: 'text',
+        placeholder: 'Email Address'
+      },{
+        name: 'message',
+        type: 'text',
+        placeholder: 'Type message here'
+      }],
+      buttons: [{
+        text: "Cancel"
+      },
+      {
+        text: "Send",
+    }]
+    });
+    prompt.present();
   }
 
   logout() {
