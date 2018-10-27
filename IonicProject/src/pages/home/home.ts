@@ -9,8 +9,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class HomePage {
 
-  
-
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public fAuth: AngularFireAuth) {
 
   }
@@ -24,25 +22,7 @@ export class HomePage {
   }
 
   login() {
-    let prompt = this.alertCtrl.create({
-      title: 'Enter Information',
-      inputs: [{
-        name: 'email',
-        placeholder: 'Email Address'
-      },
-      {
-        name: 'password',
-        placeholder: 'Password',
-        type: 'password'
-      }],
-      buttons: [{
-        text: 'Login',
-      },
-      {
-        text: 'Cancel',
-        }],
-    });
-    prompt.present();
+    this.navCtrl.push('LoginScreenPage');
     }
 
     makeAccount() {

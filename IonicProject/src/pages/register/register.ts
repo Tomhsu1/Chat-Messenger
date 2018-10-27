@@ -29,11 +29,12 @@ export class RegisterPage {
       );
       if (r) {
         console.log("Successfully registered!");
-        this.navCtrl.setRoot('LoginScreenPage');
+        this.navCtrl.setRoot('LandingPage');
       }
 
     } catch (err) {
       console.error(err);
+      alert(err);
     }
   }
 }
