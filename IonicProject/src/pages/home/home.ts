@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { PopoverController } from 'ionic-angular';
+
+import { AngularFireAuth } from 'angularfire2/auth';
+
 
 @Component({
   selector: 'page-home',
@@ -22,11 +24,10 @@ class MyPage {
 
 export class HomePage {
 
-  
-  
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,public viewCtrl: ViewController) {
-  
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public fAuth: AngularFireAuth) {
+
+
   }
 
   myFunction() {
@@ -38,47 +39,42 @@ export class HomePage {
   }
 
   login() {
-    let prompt = this.alertCtrl.create({
-      title: 'Enter Information',
-      inputs: [{
-        name: 'email',
-        placeholder: 'Email Address'
-      },
-      {
-        name: 'password',
-        placeholder: 'Password',
-        type: 'password'
-      }],
-      buttons: [{
-        text: 'Login',
-      },
-      {
-        text: 'Cancel',
-        }],
-    });
-    prompt.present();
+    this.navCtrl.push('LoginScreenPage');
+    }
+
+    landing() {
+      this.navCtrl.push('LandingPage');
+    }
+
+    KobyPage() {
+      this.navCtrl.push('kobyPage');
     }
 
     makeAccount() {
-      let prompt = this.alertCtrl.create({
-        title: 'Enter Information',
-        inputs: [{
-          name: 'email',
-          placeholder: 'Email Address'
-        },
-        {
-          name: 'password',
-          placeholder: 'Password',
-          type: 'password'
-        }],
-        buttons: [{
-          text: 'Create Account',
-        },
-        {
-          text: 'Cancel',
-        }],
-      });
-      prompt.present();
+      // let prompt = this.alertCtrl.create({
+      //   title: 'Enter Information',
+      //   inputs: [{
+      //     name: 'email',
+      //     placeholder: 'Email Address'
+      //   },
+      //   {
+      //     name: 'password',
+      //     placeholder: 'Password',
+      //     type: 'password'
+      //   }],
+      //   buttons: [{
+      //     text: 'Create Account',
+      //   },
+      //   {
+      //     text: 'Cancel',
+      //   }],
+      // });
+      // prompt.present();
+      
+    }
+
+    logout() {
+      this.fAuth.auth.signOut();
     }
   }
 
