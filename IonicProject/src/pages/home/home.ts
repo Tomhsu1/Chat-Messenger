@@ -10,18 +10,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: 'home.html'
 })
 
-@Component({})
-class MyPage {
-  constructor(public popoverCtrl: PopoverController) {}
-
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({
-      ev: myEvent
-    });
-  }
-}
-
 export class HomePage {
 
 
