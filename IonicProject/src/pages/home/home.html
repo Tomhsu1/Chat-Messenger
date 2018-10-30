@@ -12,7 +12,15 @@
   </ion-navbar>
 
 </ion-header>
-      
+
+<ion-scroll scrollX="true">
+</ion-scroll>
+
+<ion-scroll scrollY="true">
+</ion-scroll>
+
+<ion-scroll scrollX="true" scrollY="true">
+</ion-scroll>
       
       <ion-content padding>
         <ion-spinner name="bubbles"></ion-spinner>
@@ -21,10 +29,17 @@
       <input placeholder = " Start typing to see trick...">
       <div class = "msg">Good Job!</div>
       
+<<<<<<< HEAD
       <button ion-button (click) = "this.navCtrl.push('RegisterPage')"> Make an Account </button>
       <button ion-button (click) = "this.navCtrl.push('LoginScreenPage')"> Login </button>
       <button ion-button (click) = "this.navCtrl.push('LandingPage')"> Test to Landing Page </button>
       <button ion-button (click) = "this.navCtrl.push('TicPage')"> Test to tictactoe </button>
+=======
+      <button ion-button color = "secondary"(click) = "this.navCtrl.push('RegisterPage')"> Make an Account </button>
+      <button ion-button color = "danger"(click) = "this.navCtrl.push('LoginScreenPage')"> Login </button>
+      <button ion-button small (click) = "this.navCtrl.push('LandingPage')"> Test to Landing Page </button>
+      <button ion-button block (click) = "this.navCtrl.push('KobyPage')">This is my page baby</button>
+>>>>>>> a3d2840e75e51f576b9988eebc8163f3568ae390
 
      <div><button (click)="myFunction()">Try it</button></div> 
 
@@ -37,7 +52,9 @@
       </ion-item>
     
       
-
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
     
       
 
