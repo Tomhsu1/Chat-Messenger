@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="gameStatus" >
+      
+  </div>
+  <ion-grid class="board">
+    <ion-row *ngFor="let row of [0,1,2]">
+      <ion-col col-4 class="cell"
+            *ngFor="let col of [0,1,2]"
+            (click)="handleMove(col+row*3)">
+            {{squares[col+row*3]}}
+      </ion-col>
+      
+    </ion-row>
+    
+  </ion-grid>
+  <button class="restart" (click)="restartGame()">New Game</button>
+</ion-content>
