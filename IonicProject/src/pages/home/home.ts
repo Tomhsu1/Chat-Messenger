@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 
+
 import { PopoverController } from 'ionic-angular';
+
 
 
 @Component({
@@ -11,26 +14,20 @@ import { PopoverController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 
-@Component({})
-class MyPage {
-  constructor(public popoverCtrl: PopoverController) {}
 
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({
-      ev: myEvent
-    });
-  }
-}
+
+  
 
 export class HomePage {
 
 
-  
-  
+
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController,public viewCtrl: ViewController) {
   
+
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public fAuth: AngularFireAuth) {
+
 
   }
 
