@@ -6,6 +6,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth'
+import { environment } from '../environment/environment';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    // AngularFireModule.initializeApp(CREDENTIALS),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,3 +34,13 @@ import { HomePage } from '../pages/home/home';
   ]
 })
 export class AppModule {}
+
+// var CREDENTIALS = {
+//   apiKey: "AIzaSyBXLE79PVPwj5uEfQVxVagmL5vnUGg_WfU",
+//     authDomain: "chat-messenger-5c.firebaseapp.com",
+//     databaseURL: "https://chat-messenger-5c.firebaseio.com",
+//     projectId: "chat-messenger-5c",
+//     storageBucket: "chat-messenger-5c.appspot.com",
+//     messagingSenderId: "154690224363"
+
+// };
