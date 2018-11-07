@@ -25,5 +25,6 @@
   <ion-item>
    <ion-input type="text" placeholder="type here..." [(ngModel)]="newmessage"></ion-input>
    <button ion-button clear item-right (click)="send()">Send</button>
+   <ion-input id="input" type="text" (keyup.enter) = "send()"></ion-input>
   </ion-item>
  </ion-footer>

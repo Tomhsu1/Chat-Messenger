@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { NavController,AlertController } from 'ionic-angular';
 import * as firebase from 'firebase';
@@ -8,7 +8,7 @@ import * as firebase from 'firebase';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+@HostListener('document:keydown', ['$event'])
 @IonicPage()
 @Component({
   selector: 'page-message',
@@ -52,15 +52,21 @@ export class MessagePage {
     
   }
 
-  createUsername() {
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if(event.keyCode  ===  13){
+      //Press action
+      this.ref.push({
+        name: this.name.username,
+        message: this.newmessage
+     });
+          }
+      }
+      send() {
+        this.ref.push({
+          name: this.name.username,
+          message: this.newmessage
+       });
+      }
+    }
+
     
-  }
-
-  send(){
-    this.ref.push({
-       name: this.name.username,
-       message: this.newmessage
-    });
-   }
-
-}
