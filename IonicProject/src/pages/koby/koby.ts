@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the KobyPage page.
@@ -21,5 +22,9 @@ export class KobyPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad KobyPage');
   }
+ home() {
+   this.navCtrl.push(HomePage);
+ }
+
 
 }

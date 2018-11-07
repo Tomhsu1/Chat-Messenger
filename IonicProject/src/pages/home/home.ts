@@ -38,6 +38,8 @@ export class HomePage {
       this.navCtrl.push('kobyPage');
     }
 
+  
+
     makeAccount() {
       // let prompt = this.alertCtrl.create({
       //   title: 'Enter Information',

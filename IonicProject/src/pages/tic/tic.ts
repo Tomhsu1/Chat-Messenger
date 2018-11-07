@@ -49,6 +49,7 @@ export class TicPage {
             && this.squares[condition[0]] === this.squares[condition[1]]
             && this.squares[condition[1]] === this.squares[condition[2]]) {
               return true;
+        
         }
     }
     return false;
