@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { NavController,AlertController } from 'ionic-angular';
 import * as firebase from 'firebase';
+import { MenuController } from 'ionic-angular';
 /**
  * Generated class for the MessagePage page.
  *
@@ -15,12 +16,23 @@ import * as firebase from 'firebase';
   templateUrl: 'message.html',
 })
 export class MessagePage {
-  ref;
+  room1;
 	name;
 	newmessage;
-	messagesList;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController) {
-    this.ref = firebase.database().ref('messages');
+  messagesList1;
+  messagesList2;
+  room2;
+  showRoom1;
+  showRoom2;
+  showRoom: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public menuCtrl: MenuController) {
+    this.room1 = firebase.database().ref('room1');
+    this.room2 = firebase.database().ref('room2');
+    this.showRoom = [
+      "Room1",
+      "Room2",
+      "Room3"
+    ]
   }
 
   ionViewDidLoad() {
@@ -37,35 +49,73 @@ export class MessagePage {
   				this.name = username
   			}
   		}]
-  	}).present();
-    this.ref.on('value',data => {
-  		let tmp = [];
-  		data.forEach( data => {
-  			tmp.push({
-  				key: data.key,
-  				name: data.val().name,
-  				message: data.val().message
-  			})
-  		});
-  		this.messagesList = tmp;
-  	});
-    
-  }
+    }).present();
+      this.room1.on('value',data => {
+        let rm1 = [];
+        data.forEach( data => {
+          rm1.push({
+            key: data.key,
+            name: data.val().name,
+            message: data.val().message
+          })
+        });
+        this.messagesList1 = rm1;
+      });
+      this.room2.on('value',data => {
+        let rm2 = [];
+        data.forEach( data => {
+          rm2.push({
+            key: data.key,
+            name: data.val().name,
+            message: data.val().message
+          })
+        });
+        this.messagesList2 = rm2;
+      });
+    }
 
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if(event.keyCode  ===  13){
-      //Press action
-      this.ref.push({
-        name: this.name.username,
-        message: this.newmessage
-     });
-          }
-      }
+  // handleKeyboardEvent(event: KeyboardEvent) {
+  //   if(event.keyCode  ===  13){
+  //     //Press action
+  //     this.room1.push({
+  //       name: this.name.username,
+  //       message: this.newmessage
+  //    });
+  //         }
+  //     }
       send() {
-        this.ref.push({
+        if (this.showRoom1 == true) {
+        this.room1.push({
           name: this.name.username,
           message: this.newmessage
        });
+      }
+      if (this.showRoom2 == true) {
+        this.room2.push({
+          name: this.name.username,
+          message: this.newmessage
+       });
+      }
+    }
+
+      openRoom() {
+        this.alert.create({
+          title:'Choose Room',
+          buttons:[{
+            text: 'Room1',
+            handler: showRoom1 =>{
+              this.showRoom1 = true;
+              this.showRoom2 = false;
+            }
+          },
+          {
+            text: 'Room2',
+           handler: showRoom2 => {
+             this.showRoom2 = true;
+             this.showRoom1 = false;
+           }
+          }]
+        }).present();
       }
     }
 

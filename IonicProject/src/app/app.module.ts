@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { environment } from '../environment/environment';
+import * as firebase from 'firebase';
 
 @NgModule({
   declarations: [
