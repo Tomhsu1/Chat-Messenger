@@ -38,6 +38,23 @@ export class MessagePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessagePage');
     this.alert.create({
+      title:'Choose Room',
+      buttons:[{
+        text: 'Room1',
+        handler: showRoom1 =>{
+          this.showRoom1 = true;
+          this.showRoom2 = false;
+        }
+      },
+      {
+        text: 'Room2',
+       handler: showRoom2 => {
+         this.showRoom2 = true;
+         this.showRoom1 = false;
+       }
+      }]
+    }).present();
+    this.alert.create({
   		title:'Username',
   		inputs:[{
   			name:'username',
