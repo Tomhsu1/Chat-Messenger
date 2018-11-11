@@ -1,16 +1,18 @@
-import { Component, HostListener } from '@angular/core';
+import * as firebase from 'firebase';
+import { Component, ViewChild, HostListener } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { NavController,AlertController } from 'ionic-angular';
-import * as firebase from 'firebase';
-import { MenuController } from 'ionic-angular';
+import { MenuController, Content } from 'ionic-angular';
+
 /**
  * Generated class for the MessagePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-@HostListener('document:keydown', ['$event'])
+
 @IonicPage()
+@HostListener('document:keypress', ['$event'])
 @Component({
   selector: 'page-message',
   templateUrl: 'message.html',
