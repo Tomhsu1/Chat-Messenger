@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the TicPage page.
  *
@@ -19,7 +19,7 @@ export class TicPage {
   player = 'X';
   winner = null;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
 
@@ -33,10 +33,23 @@ export class TicPage {
       this.squares[position] = this.player;
       if(this.winningMove()) {
         this.winner = this.player;
+        let alert = this.alertCtrl.create({
+          title: "Winner!",
+          subTitle: this.winner + ' wins!',
+          buttons: [{
+            text: 'New Game',
+            handler: newGame => {
+              this.squares = Array(9).fill(null);
+              this.player = 'X';
+              this.winner = null;
+            }
+          }], 
+        });
+        alert.present();
+      }
       }
       this.player = this.player === 'X' ? 'O' : 'X';
     }
-  }
 
   winningMove() {
     const conditions = [
