@@ -3,6 +3,7 @@ import { Component, ViewChild, HostListener } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { NavController,AlertController } from 'ionic-angular';
 import { MenuController, Content } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the MessagePage page.
@@ -27,7 +28,7 @@ export class MessagePage {
   showRoom1;
   showRoom2;
   showRoom: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public menuCtrl: MenuController, public fAuth: AngularFireAuth) {
     this.room1 = firebase.database().ref('room1');
     this.room2 = firebase.database().ref('room2');
     this.showRoom = [
@@ -135,6 +136,12 @@ export class MessagePage {
            }
           }]
         }).present();
+      }
+
+      logout() {
+        this.fAuth.auth.signOut();
+        console.log("Logged out");
+        this.navCtrl.setRoot('LoginScreenPage');
       }
     }
 
