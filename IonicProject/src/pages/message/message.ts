@@ -4,6 +4,7 @@ import { IonicPage, NavParams } from 'ionic-angular';
 import { NavController,AlertController } from 'ionic-angular';
 import { MenuController, Content } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { LoginScreenPage } from '../login-screen/login-screen';
 
 /**
  * Generated class for the MessagePage page.
@@ -76,7 +77,7 @@ export class MessagePage {
           rm1.push({
             key: data.key,
             name: data.val().name,
-            message: data.val().message
+            message: data.val().message,
           })
         });
         this.messagesList1 = rm1;
@@ -116,6 +117,7 @@ export class MessagePage {
           message: this.newmessage
        });
       }
+      this.newmessage = "";
     }
 
       openRoom() {
