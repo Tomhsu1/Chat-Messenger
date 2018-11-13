@@ -12,6 +12,8 @@
   </ion-navbar>
   <button ion-button (click) = "openRoom()">Choose Room</button>
   <button ion-button (click) = "logout()"> Logout </button>
+  <button ion-button (click) = "this.navCtrl.push('TicPage')"> Play TicTacToe </button>
+  <button ion-button (click) = "this.navCtrl.push('AddRoomPage')"> Add Room </button>
 </ion-header>
 
 
@@ -29,6 +31,7 @@
       <ion-item *ngFor="let room2 of messagesList2">
       <h3>{{room2.name}}</h3>
       <p>{{room2.message}}</p>
+      <p>{{room2.date}}</p>
       </ion-item>
     </div>
   </ion-list>
@@ -38,7 +41,7 @@
 
  <ion-footer>
   <ion-item>
-   <ion-input type="text" placeholder="type here..." [(ngModel)]="newmessage"></ion-input>
+   <ion-input placeholder="type here..." [(ngModel)]="newmessage"></ion-input>
    
    <button ion-button clear item-right (click)="send()">Send</button>
   </ion-item>

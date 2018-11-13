@@ -5,6 +5,8 @@ import { NavController,AlertController } from 'ionic-angular';
 import { MenuController, Content } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginScreenPage } from '../login-screen/login-screen';
+import { timestamp } from 'rxjs/operators';
+import {DatePipe} from '@angular/common';
 
 /**
  * Generated class for the MessagePage page.
@@ -20,6 +22,7 @@ import { LoginScreenPage } from '../login-screen/login-screen';
   templateUrl: 'message.html',
 })
 export class MessagePage {
+  myDate: String = new Date().toISOString();
   room1;
 	name;
 	newmessage;
@@ -29,7 +32,8 @@ export class MessagePage {
   showRoom1;
   showRoom2;
   showRoom: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public menuCtrl: MenuController, public fAuth: AngularFireAuth) {
+  currentTime;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public menuCtrl: MenuController, public fAuth: AngularFireAuth, public datepipe: DatePipe) {
     this.room1 = firebase.database().ref('room1');
     this.room2 = firebase.database().ref('room2');
     this.showRoom = [
@@ -37,6 +41,7 @@ export class MessagePage {
       "Room2",
       "Room3"
     ]
+    let myDate = new Date(); 
   }
 
   ionViewDidLoad() {
@@ -78,6 +83,7 @@ export class MessagePage {
             key: data.key,
             name: data.val().name,
             message: data.val().message,
+            date: this.myDate
           })
         });
         this.messagesList1 = rm1;
@@ -88,7 +94,8 @@ export class MessagePage {
           rm2.push({
             key: data.key,
             name: data.val().name,
-            message: data.val().message
+            message: data.val().message,
+            date: this.myDate
           })
         });
         this.messagesList2 = rm2;
@@ -108,13 +115,15 @@ export class MessagePage {
         if (this.showRoom1 == true) {
         this.room1.push({
           name: this.name.username,
-          message: this.newmessage
+          message: this.newmessage,
+          date: this.myDate
        });
       }
       if (this.showRoom2 == true) {
         this.room2.push({
           name: this.name.username,
-          message: this.newmessage
+          message: this.newmessage,
+          date: this.myDate
        });
       }
       this.newmessage = "";
