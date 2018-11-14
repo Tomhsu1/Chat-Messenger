@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the LandingPage page.
@@ -16,7 +17,12 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class LandingPage {
 
+  chat: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public fAuth: AngularFireAuth, public alertCtrl: AlertController) {
+  this.chat = [
+
+  ];
   }
 
   newChat() {
@@ -36,6 +42,9 @@ export class LandingPage {
       },
       {
         text: "Send",
+        handler: data => {
+          this.chat.push(data.email, data.message);
+        }
     }]
     });
     prompt.present();
