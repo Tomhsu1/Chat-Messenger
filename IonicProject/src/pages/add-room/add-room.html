@@ -7,12 +7,29 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>AddRoom</ion-title>
+    <ion-title>Private Rooms</ion-title>
   </ion-navbar>
-
+  <button (click) = "addRoom()"> Add Room </button>
+  <button (click) = "findRoom()"> Find Room </button>
+  
+  
 </ion-header>
 
-
 <ion-content padding>
-
+<ion-list no-lines>
+  <div *ngIf="roomName">
+      <ion-item *ngFor="let roomName of messagesList">
+        <h3>{{roomName.room}}</h3>
+        <p>{{roomName.message}}</p>
+      </ion-item>
+    </div>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-item>
+   <ion-input placeholder="type here..." [(ngModel)]="newmessage"></ion-input>
+   
+   <button ion-button clear item-right (click)="send()">Send</button>
+  </ion-item>
+ </ion-footer>

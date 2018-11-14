@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { environment } from '../environment/environment';
+import * as firebase from 'firebase';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { environment } from '../environment/environment';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatePipe
   ]
 })
 export class AppModule {}

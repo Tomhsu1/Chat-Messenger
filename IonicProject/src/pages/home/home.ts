@@ -30,9 +30,9 @@ export class HomePage {
     this.navCtrl.push('LoginScreenPage');
     }
 
-    landing() {
-      this.navCtrl.push('LandingPage');
-    }
+    // landing() {
+    //   this.navCtrl.push('LandingPage');
+    // }
 
     KobyPage() {
       this.navCtrl.push('kobyPage');

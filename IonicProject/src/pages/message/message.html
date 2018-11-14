@@ -8,22 +8,41 @@
 
   <ion-navbar>
     <ion-title>MessagePage</ion-title>
+    
   </ion-navbar>
-
+  <button ion-button (click) = "openRoom()">Choose Room</button>
+  <button ion-button (click) = "logout()"> Logout </button>
+  <button ion-button (click) = "this.navCtrl.push('TicPage')"> Play TicTacToe </button>
+  <button ion-button (click) = "this.navCtrl.push('AddRoomPage')"> Add Room </button>
 </ion-header>
 
 
 <ion-content padding>
   <ion-list no-lines>
-   <ion-item *ngFor="let message of messagesList">
-    <h3>{{message.name}}</h3>
-    <p>{{message.message}}</p>
-   </ion-item>
+    <div *ngIf="showRoom1">
+      <ion-item *ngFor="let room1 of messagesList1">
+        <h3>{{room1.name}}</h3>
+        <p>{{room1.message}}</p>
+      </ion-item>
+    </div>
   </ion-list>
- </ion-content>
+  <ion-list no-lines>
+    <div *ngIf="showRoom2">
+      <ion-item *ngFor="let room2 of messagesList2">
+      <h3>{{room2.name}}</h3>
+      <p>{{room2.message}}</p>
+      <p>{{room2.date}}</p>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>
+
+
+
  <ion-footer>
   <ion-item>
-   <ion-input type="text" placeholder="type here..." [(ngModel)]="newmessage"></ion-input>
+   <ion-input placeholder="type here..." [(ngModel)]="newmessage"></ion-input>
+   
    <button ion-button clear item-right (click)="send()">Send</button>
   </ion-item>
  </ion-footer>
