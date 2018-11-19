@@ -9,26 +9,33 @@
   <ion-navbar>
     <ion-title>Private Rooms</ion-title>
   </ion-navbar>
+  <input type = "text" id="new" placeholder="New Room Name" value=""/>
   <button (click) = "addRoom()"> Add Room </button>
+  <input type = "text" id="look" placeholder="Find Room Name" value=""/>
   <button (click) = "findRoom()"> Find Room </button>
-  
-  
+
 </ion-header>
 
 <ion-content padding>
 <ion-list no-lines>
-  <div *ngIf="roomName">
-      <ion-item *ngFor="let roomName of messagesList">
-        <h3>{{roomName.room}}</h3>
-        <p>{{roomName.message}}</p>
+  <div *ngIf="showNew">
+      <ion-item *ngFor="let roomCalling of messagesList">
+        <p>{{roomCalling.message}}</p>
       </ion-item>
     </div>
   </ion-list>
+  <ion-list no-lines>
+    <div *ngIf="showFound">
+        <ion-item *ngFor="let finder of messagesList">
+          <p>{{finder.message}}</p>
+        </ion-item>
+      </div>
+    </ion-list>
 </ion-content>
 
 <ion-footer>
   <ion-item>
-   <ion-input placeholder="type here..." [(ngModel)]="newmessage"></ion-input>
+   <ion-input placeholder="Type your message here..." [(ngModel)]="newmessage"></ion-input>
    
    <button ion-button clear item-right (click)="send()">Send</button>
   </ion-item>

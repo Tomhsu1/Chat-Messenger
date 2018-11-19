@@ -101,16 +101,7 @@ export class MessagePage {
         this.messagesList2 = rm2;
       });
     }
-
-  // handleKeyboardEvent(event: KeyboardEvent) {
-  //   if(event.keyCode  ===  13){
-  //     //Press action
-  //     this.room1.push({
-  //       name: this.name.username,
-  //       message: this.newmessage
-  //    });
-  //         }
-  //     }
+    
       send() {
         if (this.showRoom1 == true) {
         this.room1.push({

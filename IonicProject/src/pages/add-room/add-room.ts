@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 /**
  * Generated class for the AddRoomPage page.
@@ -19,12 +20,15 @@ export class AddRoomPage {
 roomReference;
 messagesList;
 newmessage;
-roomName;
+newRoom;
 finder;
 findRoomName;
+roomCalling;
+roomName;
+showFound;
+showNew;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public fAuth: AngularFireAuth) {
-  this.roomReference = firebase.database().ref().child('privateRooms');
-  this.finder = firebase.database().ref('privateRooms').equalTo('findRoomName')
+  this.roomReference = firebase.database().ref('privateRooms');
   }
 
   ionViewDidLoad() {
@@ -32,69 +36,71 @@ findRoomName;
     
   }
 
+  // addRoom() {
+  //   this.alert.create ({
+  //     title: 'Add Room',
+  //     inputs: [{
+  //       name: 'room',
+  //       placeholder: 'Room Title',
+  //     }],
+  //     buttons: [{
+  //       text: 'Add Room',
+  //       handler: room => {
+  //         this.roomName = room;
+  //         this.roomReference.set(this.roomName);
+  //       }
+  //     },
+  //     {
+  //       text: 'Cancel',
+  //     }
+  //   ]
+  //   }).present();
+  //   console.log(this.roomName);
+  // }
+
   addRoom() {
-    this.alert.create ({
-      title: 'Add Room',
-      inputs: [{
-        name: 'room',
-        placeholder: 'Room Title',
-      }],
-      buttons: [{
-        text: 'Add Room',
-        handler: room => {
-          this.roomName = room;
-        }
-      },
-      {
-        text: 'Cancel',
-      }
-    ]
-    }).present();
-    console.log(this.roomName);
+    this.newRoom = document.getElementById("new").value;
+    console.log(this.newRoom);
+    this.roomCalling = firebase.database().ref('privateRooms/'+this.newRoom);
   }
 
   send() {
-    this.roomReference.set(this.roomName);
-    //this.roomReference = firebase.database().ref("privateRooms/"+this.roomName);
-    //fix here idk how to get it to work dang it i want a child of a child to push the message to the room
-    //i also need to figure out how to add multiple childs instead of just one
-    this.roomReference.push({
+    this.showFound = false;
+    this.showNew = true;
+    this.roomCalling.push({
       message: this.newmessage
     });
+    if (this.showNew == true && this.showFound == false) {
+    this.roomCalling.on('value',data => {
+      let rm2 = [];
+      data.forEach( data => {
+        rm2.push({
+          message: data.val().message,
+        })
+      });
+      this.messagesList = rm2;
+    });
+    }
   }
 
   findRoom(){
-    this.alert.create ({
-      title: 'Find Room',
-      inputs: [{
-        name: 'roomNameKey',
-        placeholder: 'Room Name',
-      }],
-      buttons: [{
-        text: 'Find Room',
-        handler: roomNameKey => {
-          this.findRoomName = roomNameKey;
-        }
-      },
-      {
-        text: 'Cancel',
-      }
-    ]
-    }).present();
-    this.findRoomName = this.roomName;
-
+    this.showFound = true;
+    this.showNew = false;
+    this.findRoomName = document.getElementById("look").value;
+    this.finder = firebase.database().ref('privateRooms/'+this.findRoomName);
     //change here to prevent all messages from showing
-    this.roomReference.on('value',data => {
+    if (this.showFound == true && this.showNew == false) {
+    this.finder.on('value',data => {
       let privRm = [];
       data.forEach( data => {
         privRm.push({
-          key: data.key,
-          room: data.val().roomName,
           message: data.val().message,
         })
       });
       this.messagesList = privRm;
     });
   }
-  
+    console.log(this.findRoomName);
+
+  }
 }
