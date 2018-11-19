@@ -59,14 +59,14 @@ showNew;
   // }
 
   addRoom() {
+    this.showFound = false;
+    this.showNew = true;
     this.newRoom = document.getElementById("new").value;
-    console.log(this.newRoom);
     this.roomCalling = firebase.database().ref('privateRooms/'+this.newRoom);
+    console.log(this.newRoom);
   }
 
   send() {
-    this.showFound = false;
-    this.showNew = true;
     this.roomCalling.push({
       message: this.newmessage
     });
