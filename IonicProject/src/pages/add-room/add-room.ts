@@ -61,7 +61,7 @@ showNew;
   addRoom() {
     this.showFound = false;
     this.showNew = true;
-    this.newRoom = document.getElementById("new").value;
+    this.newRoom = document.getElementById("new")["value"];
     this.roomCalling = firebase.database().ref('privateRooms/'+this.newRoom);
     console.log(this.newRoom);
   }
@@ -86,7 +86,7 @@ showNew;
   findRoom(){
     this.showFound = true;
     this.showNew = false;
-    this.findRoomName = document.getElementById("look").value;
+    this.findRoomName = document.getElementById("look")["value"];
     this.finder = firebase.database().ref('privateRooms/'+this.findRoomName);
     //change here to prevent all messages from showing
     if (this.showFound == true && this.showNew == false) {
