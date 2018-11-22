@@ -27,6 +27,8 @@ roomCalling;
 roomName;
 showFound;
 showNew;
+addedRoom = false;
+existing;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public fAuth: AngularFireAuth) {
   this.roomReference = firebase.database().ref('privateRooms');
   }
@@ -59,14 +61,24 @@ showNew;
   // }
 
   addRoom() {
+    
     this.showFound = false;
     this.showNew = true;
     this.newRoom = (<HTMLInputElement>document.getElementById("new")).value;
     this.roomCalling = firebase.database().ref('privateRooms/'+this.newRoom);
     console.log(this.newRoom);
+    this.alert.create ({
+          title: 'Added Room: '+this.newRoom,
+          buttons: [{
+            text: 'Got it!'
+          }
+        ]
+        }).present();
+    this.addedRoom = true;
   }
 
   send() {
+    if (this.addedRoom == true) {
     this.roomCalling.push({
       message: this.newmessage
     });
@@ -80,6 +92,15 @@ showNew;
       });
       this.messagesList = rm2;
     });
+    }
+    }
+    if (this.addedRoom == false) {
+      this.alert.create({
+        title: 'Make/Find a Room First!',
+        buttons: [{
+          text: 'Ok',
+        }]
+      }).present();
     }
   }
 
