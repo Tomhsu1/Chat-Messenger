@@ -34,6 +34,7 @@ enterPassword;
 callingPassword;
 foundRoom;
 chair;
+phone;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public fAuth: AngularFireAuth) {
   this.roomReference = firebase.database().ref('privateRooms');
   }
@@ -131,22 +132,27 @@ chair;
         })
       });
       this.callingPassword = findingPass;
+      console.log(this.callingPassword);
+      this.chair = JSON.stringify(this.callingPassword);
+      console.log(this.chair);
+      this.phone = this.chair.substring(14, this.chair.length-3);
+    console.log(this.phone);
+    if (this.phone == this.enterPassword) {
+      console.log("password matches!");
+    } else {
+      console.log("not matching");
+    }
     })
   }
-  // this.chair = JSON.stringify(this.callingPassword);
-  console.log(typeof this.findRoomName);
-  console.log(typeof this.callingPassword);
-  console.log(this.callingPassword);
-  // console.log(this.chair);
-  console.log(this.enterPassword);
-  if (this.callingPassword == this.enterPassword) {
-    console.log("password matches!");
-  } else {
-    console.log("not matching");
   }
-}
-
-  testPassword() {
+  test() {
     
   }
+  wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+ }
 }
