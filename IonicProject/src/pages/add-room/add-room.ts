@@ -25,16 +25,14 @@ finder;
 findRoomName;
 roomCalling;
 roomName;
-showFound;
-showNew;
 addedRoom = false;
 password;
 passwordRef;
 enterPassword;
 callingPassword;
 foundRoom;
-chair;
-phone;
+foundPassword;
+passwordString;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public fAuth: AngularFireAuth) {
   this.roomReference = firebase.database().ref('privateRooms');
   }
@@ -45,8 +43,6 @@ phone;
   }
 
   addRoom() {
-    this.showFound = false;
-    this.showNew = true;
     this.newRoom = (<HTMLInputElement>document.getElementById("new")).value;
     this.password = (<HTMLInputElement>document.getElementById("pwd")).value;
     this.roomCalling = firebase.database().ref('privateRooms/'+this.newRoom);
@@ -63,13 +59,58 @@ phone;
     this.foundRoom = false;
   }
 
+  findRoom(){
+    
+    this.findRoomName = (<HTMLInputElement>document.getElementById("look")).value;
+    this.finder = firebase.database().ref('privateRooms/'+this.findRoomName);
+    this.enterPassword = (<HTMLInputElement>document.getElementById("enterPwd")).value;
+    this.passwordRef = firebase.database().ref('privateRooms/'+this.findRoomName);
+    this.passwordRef.on('value', data => {
+      let findingPass = [];
+      data.forEach( data => {
+        findingPass.push({
+          password: data.val().password
+        })
+      });
+      this.callingPassword = findingPass;
+      console.log(this.callingPassword);
+      this.foundPassword = JSON.stringify(this.callingPassword);
+      console.log(this.foundPassword);
+      //does not work when multiple messages inside the privateRoom
+      this.passwordString = this.foundPassword.substring(14, this.foundPassword.length-3);
+    console.log(this.passwordString);
+    if (this.passwordString == this.enterPassword) {
+      this.foundRoom = true;
+      this.addedRoom = false;
+      console.log("password matches!");
+      this.finder.on('value',data => {
+        let privRm = [];
+        data.forEach( data => {
+          privRm.push({
+            message: data.val().message
+          })
+        });
+        this.messagesList = privRm;
+      });
+    }
+    if (this.passwordString !== this.enterPassword && this.foundRoom == false) {
+      console.log("not matching");
+      this.alert.create({
+        title: 'Incorrect Password!',
+        buttons: [{
+          text: 'Ok',
+        }]
+      }).present();
+    }
+    });
+  }
+
   send() {
-    if (this.addedRoom == true) {
+    if (this.addedRoom == true && this.foundRoom == false) {
     this.roomCalling.push({
       message: this.newmessage,
       password: this.password
     });
-    if (this.showNew == true && this.showFound == false) {
     this.roomCalling.on('value',data => {
       let rm2 = [];
       data.forEach( data => {
@@ -79,12 +120,10 @@ phone;
       });
       this.messagesList = rm2;
       });
-    }
-  } else if (this.foundRoom == true) {
+  } else if (this.foundRoom == true && this.addedRoom == false) {
       this.finder.push({
-        message: this.newmessage
+        message: this.newmessage,
       });
-      if (this.showNew == false && this.showFound == true) {
         this.finder.on('value',data => {
           let founded = [];
           data.forEach( data => {
@@ -94,7 +133,6 @@ phone;
           });
           this.messagesList = founded;
           });
-      }
     } else {
       this.alert.create({
         title: 'Make/Find a Room First!',
@@ -105,49 +143,6 @@ phone;
     }
   }
 
-  findRoom(){
-    this.showFound = true;
-    this.showNew = false;
-    this.foundRoom = true;
-    this.findRoomName = (<HTMLInputElement>document.getElementById("look")).value;
-    this.finder = firebase.database().ref('privateRooms/'+this.findRoomName);
-    //after I reference it, how do i turn it into a variable i can use?
-    this.enterPassword = (<HTMLInputElement>document.getElementById("enterPwd")).value;
-    this.passwordRef = firebase.database().ref('privateRooms/'+this.findRoomName);
-    if (this.showFound == true && this.showNew == false) {
-    this.finder.on('value',data => {
-      let privRm = [];
-      data.forEach( data => {
-        privRm.push({
-          message: data.val().message
-        })
-      });
-      this.messagesList = privRm;
-    });
-    this.passwordRef.on('value', data => {
-      let findingPass = [];
-      data.forEach( data => {
-        findingPass.push({
-          password: data.val().password
-        })
-      });
-      this.callingPassword = findingPass;
-      console.log(this.callingPassword);
-      this.chair = JSON.stringify(this.callingPassword);
-      console.log(this.chair);
-      this.phone = this.chair.substring(14, this.chair.length-3);
-    console.log(this.phone);
-    if (this.phone == this.enterPassword) {
-      console.log("password matches!");
-    } else {
-      console.log("not matching");
-    }
-    })
-  }
-  }
-  test() {
-    
-  }
   wait(ms){
     var start = new Date().getTime();
     var end = start;

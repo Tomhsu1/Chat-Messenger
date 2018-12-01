@@ -24,14 +24,14 @@
 
 <ion-content padding>
 <ion-list no-lines>
-  <div *ngIf="showNew">
+  <div *ngIf="addedRoom">
       <ion-item *ngFor="let roomCalling of messagesList">
         <p>{{roomCalling.message}}</p>
       </ion-item>
-    </div>
+  </div>
   </ion-list>
   <ion-list no-lines>
-    <div *ngIf="showFound">
+    <div *ngIf="foundRoom">
         <ion-item *ngFor="let finder of messagesList">
           <p>{{finder.message}}</p>
         </ion-item>
