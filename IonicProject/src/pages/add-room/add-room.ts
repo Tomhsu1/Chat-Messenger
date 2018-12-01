@@ -57,14 +57,16 @@ passwordString;
         }).present();
     this.addedRoom = true;
     this.foundRoom = false;
+    this.roomCalling.push({
+      password: this.password
+    });
   }
 
   findRoom(){
-    
     this.findRoomName = (<HTMLInputElement>document.getElementById("look")).value;
     this.finder = firebase.database().ref('privateRooms/'+this.findRoomName);
     this.enterPassword = (<HTMLInputElement>document.getElementById("enterPwd")).value;
-    this.passwordRef = firebase.database().ref('privateRooms/'+this.findRoomName);
+    this.passwordRef = firebase.database().ref('privateRooms/'+this.findRoomName).limitToFirst(1);
     this.passwordRef.on('value', data => {
       let findingPass = [];
       data.forEach( data => {
@@ -107,9 +109,8 @@ passwordString;
 
   send() {
     if (this.addedRoom == true && this.foundRoom == false) {
-    this.roomCalling.push({
-      message: this.newmessage,
-      password: this.password
+      this.roomCalling.push({
+      message: this.newmessage
     });
     this.roomCalling.on('value',data => {
       let rm2 = [];
@@ -141,6 +142,7 @@ passwordString;
         }]
       }).present();
     }
+    this.newmessage = "";
   }
 
   wait(ms){
