@@ -31,7 +31,7 @@ name;
 passwordRef;
 enterPassword;
 callingPassword;
-foundRoom;
+foundRoom = false;
 foundPassword;
 passwordString;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public fAuth: AngularFireAuth) {
@@ -91,9 +91,8 @@ passwordString;
       console.log(this.callingPassword);
       this.foundPassword = JSON.stringify(this.callingPassword);
       console.log(this.foundPassword);
-      //does not work when multiple messages inside the privateRoom
       this.passwordString = this.foundPassword.substring(14, this.foundPassword.length-3);
-    console.log(this.passwordString);
+      console.log(this.passwordString);
     if (this.passwordString == this.enterPassword) {
       this.foundRoom = true;
       this.addedRoom = false;
@@ -107,8 +106,14 @@ passwordString;
         });
         this.messagesList = privRm;
       });
+      this.alert.create({
+        title: 'Found Room!',
+        buttons: [{
+          text: 'Ok',
+        }]
+      }).present();
     }
-    if (this.passwordString !== this.enterPassword && this.foundRoom == false) {
+    if (this.passwordString !== this.enterPassword) {
       console.log("not matching");
       this.alert.create({
         title: 'Incorrect Password!',
