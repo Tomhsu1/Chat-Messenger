@@ -5,11 +5,16 @@ page-add-room {
     #lookButton {
         float: right;
         display: block;
+        width: 80px;
     }
-    #addButton {
+    #newButton {
         display: inline-block;
+        width: 80px;
     }
     #enterPwd {
         float: right;
+    }
+    #new, #pwd, #enterPwd, #look  {
+        width: 120px;
     }
 }

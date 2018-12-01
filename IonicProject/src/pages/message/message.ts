@@ -4,8 +4,6 @@ import { IonicPage, NavParams } from 'ionic-angular';
 import { NavController,AlertController } from 'ionic-angular';
 import { MenuController, Content } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { LoginScreenPage } from '../login-screen/login-screen';
-import { timestamp } from 'rxjs/operators';
 import {DatePipe} from '@angular/common';
 
 /**
