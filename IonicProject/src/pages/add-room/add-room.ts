@@ -27,6 +27,7 @@ roomCalling;
 roomName;
 addedRoom = false;
 password;
+name;
 passwordRef;
 enterPassword;
 callingPassword;
@@ -39,7 +40,19 @@ passwordString;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddRoomPage');
-    
+    // this.alert.create({
+  	// 	title:'Username',
+  	// 	inputs:[{
+  	// 		name:'username',
+  	// 		placeholder: 'username'
+  	// 	}],
+  	// 	buttons:[{
+  	// 		text: 'Continue',
+  	// 		handler: username =>{
+  	// 			this.name = username
+  	// 		}
+  	// 	}]
+    // }).present();
   }
 
   addRoom() {
