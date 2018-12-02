@@ -22,6 +22,8 @@
     <div id="bottom">
   <button ion-button (click) = "addRoom()" id="newButton"> Add Room </button>
   <button ion-button (click) = "findRoom()" id="lookButton"> Find Room </button>
+  <button ion-button color = "danger" (click) = "this.navCtrl.push('TicTacToePage')"> TicTacToe </button>
+
     </div>
 </ion-header>
 
@@ -29,6 +31,7 @@
 <ion-list no-lines>
   <div *ngIf="addedRoom">
       <ion-item *ngFor="let roomCalling of messagesList">
+        <p id="username">{{roomCalling.username}}</p>
         <p id="time">{{roomCalling.time}}</p>
         <p id="message">{{roomCalling.message}}</p>
       </ion-item>
@@ -37,6 +40,7 @@
   <ion-list no-lines>
     <div *ngIf="foundRoom">
         <ion-item *ngFor="let finder of messagesList">
+          <p id="username">{{finder.username}}</p>
           <p id="time">{{finder.time}}</p>
           <p id="message">{{finder.message}}</p>
           

@@ -21,7 +21,10 @@ export class User {
   templateUrl: 'login-screen.html',
 })
 export class LoginScreenPage {
-
+  userRef;
+  emailCut;
+  email;
+  name;
   public user:User = new User();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public fAuth: AngularFireAuth) {
@@ -39,7 +42,6 @@ export class LoginScreenPage {
       );
       if (r) {
         console.log("Successfully logged in!");
-        
         this.navCtrl.push('MessagePage');
       }
 

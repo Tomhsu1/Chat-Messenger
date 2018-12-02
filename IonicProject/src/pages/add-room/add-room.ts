@@ -35,7 +35,12 @@ foundRoom = false;
 foundPassword;
 passwordString;
 start;
-
+user;
+email;
+emailCut;
+username;
+usernameString;
+usernameCut;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public fAuth: AngularFireAuth) {
   this.roomReference = firebase.database().ref('privateRooms');
   
@@ -56,6 +61,27 @@ start;
   	// 		}
   	// 	}]
     // }).present();
+    this.user = firebase.auth().currentUser;
+      if (this.user != null) {
+        this.email = this.user.email;
+        console.log(this.email);
+        this.emailCut = this.email.split('@')[0];
+      }
+      this.name = firebase.database().ref('users/'+this.emailCut);
+      this.name.on('value',data => {
+        let nameBase = [];
+        data.forEach( data => {
+          nameBase.push({
+            username: data.val().username
+          })
+        });
+        this.username = nameBase;
+        console.log(this.username);
+        this.usernameString = JSON.stringify(this.username);
+        console.log(this.usernameString);
+        this.usernameCut = this.usernameString.substring(14, this.usernameString.length-3);
+        console.log(this.usernameCut);
+      });
   }
 
   addRoom() {
@@ -104,6 +130,7 @@ start;
         let privRm = [];
         data.forEach( data => {
           privRm.push({
+            username: data.val().username,
             message: data.val().message,
             time: data.val().time
           })
@@ -136,6 +163,7 @@ start;
     // }
     if (this.addedRoom == true && this.foundRoom == false) {
       this.roomCalling.push({
+      username: this.usernameCut,
       message: this.newmessage,
       time: this.start
     });
@@ -143,6 +171,7 @@ start;
       let rm2 = [];
       data.forEach( data => {
         rm2.push({
+          username: data.val().username,
           message: data.val().message,
           time: data.val().time
         })
@@ -151,6 +180,7 @@ start;
       });
   } else if (this.foundRoom == true && this.addedRoom == false) {
       this.finder.push({
+        username: this.usernameCut,
         message: this.newmessage,
         time: this.start
       });
@@ -158,6 +188,7 @@ start;
           let founded = [];
           data.forEach( data => {
             founded.push({
+              username: data.val().username,
               message: data.val().message,
               time: data.val().time
             })
