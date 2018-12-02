@@ -30,16 +30,22 @@ export class MessagePage {
   showRoom1;
   showRoom2;
   showRoom: any;
-  currentTime;
+  time;
+  email;
+  user;
+  username;
+  emailCut;
+  usernameString;
+  usernameCut;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public menuCtrl: MenuController, public fAuth: AngularFireAuth, public datepipe: DatePipe) {
     this.room1 = firebase.database().ref('room1');
     this.room2 = firebase.database().ref('room2');
+
     this.showRoom = [
       "Room1",
       "Room2",
       "Room3"
     ]
-    let myDate = new Date(); 
   }
 
   ionViewDidLoad() {
@@ -61,27 +67,14 @@ export class MessagePage {
        }
       }]
     }).present();
-    this.alert.create({
-  		title:'Username',
-  		inputs:[{
-  			name:'username',
-  			placeholder: 'username'
-  		}],
-  		buttons:[{
-  			text: 'Continue',
-  			handler: username =>{
-  				this.name = username
-  			}
-  		}]
-    }).present();
       this.room1.on('value',data => {
         let rm1 = [];
         data.forEach( data => {
           rm1.push({
             key: data.key,
-            name: data.val().name,
+            username: data.val().username,
             message: data.val().message,
-            date: this.myDate
+            time: data.val().time
           })
         });
         this.messagesList1 = rm1;
@@ -91,28 +84,50 @@ export class MessagePage {
         data.forEach( data => {
           rm2.push({
             key: data.key,
-            name: data.val().name,
+            username: data.val().username,
             message: data.val().message,
-            date: this.myDate
+            time: data.val().time
           })
         });
         this.messagesList2 = rm2;
       });
+      this.user = firebase.auth().currentUser;
+      if (this.user != null) {
+        this.email = this.user.email;
+        console.log(this.email);
+        this.emailCut = this.email.split('@')[0];
+      }
+      this.name = firebase.database().ref('users/'+this.emailCut);
+      this.name.on('value',data => {
+        let nameBase = [];
+        data.forEach( data => {
+          nameBase.push({
+            username: data.val().username
+          })
+        });
+        this.username = nameBase;
+        console.log(this.username);
+        this.usernameString = JSON.stringify(this.username);
+        console.log(this.usernameString);
+        this.usernameCut = this.usernameString.substring(14, this.usernameString.length-3);
+        console.log(this.usernameCut);
+      });
     }
     
       send() {
+        this.time = new Date().toLocaleString();
         if (this.showRoom1 == true) {
         this.room1.push({
-          name: this.name.username,
+          username: this.usernameCut,
           message: this.newmessage,
-          date: this.myDate
+          time: this.time
        });
       }
       if (this.showRoom2 == true) {
         this.room2.push({
-          name: this.name.username,
+          username: this.usernameCut,
           message: this.newmessage,
-          date: this.myDate
+          time: this.time
        });
       }
       this.newmessage = "";
@@ -143,6 +158,13 @@ export class MessagePage {
         console.log("Logged out");
         this.navCtrl.setRoot('LoginScreenPage');
       }
+      test() {
+        this.user = firebase.auth().currentUser;
+      if (this.user != null) {
+        this.email = this.user.email;
+        console.log(this.email);
     }
+    }
+  }
 
     

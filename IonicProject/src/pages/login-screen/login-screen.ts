@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
 
 /**
  * Generated class for the LoginScreenPage page.
@@ -24,7 +25,6 @@ export class LoginScreenPage {
   public user:User = new User();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public fAuth: AngularFireAuth) {
-    
   }
 
   ionViewDidLoad() {
@@ -39,6 +39,7 @@ export class LoginScreenPage {
       );
       if (r) {
         console.log("Successfully logged in!");
+        
         this.navCtrl.push('MessagePage');
       }
 

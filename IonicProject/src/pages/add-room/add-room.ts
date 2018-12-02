@@ -35,9 +35,11 @@ foundRoom = false;
 foundPassword;
 passwordString;
 start;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public fAuth: AngularFireAuth) {
   this.roomReference = firebase.database().ref('privateRooms');
-  }
+  
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddRoomPage');
@@ -129,6 +131,9 @@ start;
 
   send() {
     this.start = new Date().toLocaleString();
+    // if (this.newmessage.length > 22) {
+    // code to split message into multiple lines if too long!
+    // }
     if (this.addedRoom == true && this.foundRoom == false) {
       this.roomCalling.push({
       message: this.newmessage,
