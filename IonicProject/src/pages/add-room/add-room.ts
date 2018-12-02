@@ -34,6 +34,7 @@ callingPassword;
 foundRoom = false;
 foundPassword;
 passwordString;
+start;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public fAuth: AngularFireAuth) {
   this.roomReference = firebase.database().ref('privateRooms');
   }
@@ -101,7 +102,8 @@ passwordString;
         let privRm = [];
         data.forEach( data => {
           privRm.push({
-            message: data.val().message
+            message: data.val().message,
+            time: data.val().time
           })
         });
         this.messagesList = privRm;
@@ -126,15 +128,18 @@ passwordString;
   }
 
   send() {
+    this.start = new Date().toLocaleString();
     if (this.addedRoom == true && this.foundRoom == false) {
       this.roomCalling.push({
-      message: this.newmessage
+      message: this.newmessage,
+      time: this.start
     });
     this.roomCalling.on('value',data => {
       let rm2 = [];
       data.forEach( data => {
         rm2.push({
           message: data.val().message,
+          time: data.val().time
         })
       });
       this.messagesList = rm2;
@@ -142,12 +147,14 @@ passwordString;
   } else if (this.foundRoom == true && this.addedRoom == false) {
       this.finder.push({
         message: this.newmessage,
+        time: this.start
       });
         this.finder.on('value',data => {
           let founded = [];
           data.forEach( data => {
             founded.push({
               message: data.val().message,
+              time: data.val().time
             })
           });
           this.messagesList = founded;
@@ -164,9 +171,8 @@ passwordString;
   }
 
   wait(ms){
-    var start = new Date().getTime();
-    var end = start;
-    while(end < start + ms) {
+    var end = this.start;
+    while(end < this.start + ms) {
       end = new Date().getTime();
    }
  }

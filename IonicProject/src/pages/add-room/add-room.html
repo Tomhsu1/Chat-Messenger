@@ -11,9 +11,13 @@
   </ion-navbar>
     <div id="top">
   <input type = "text" id="new" placeholder="New Room Name" value=""/>
-  <input type = "text" id="pwd" placeholder="New Password" value=""/>
-  <input type = "text" id="enterPwd" placeholder="Enter Password" value=""/>
+
+
   <input type = "text" id="look" placeholder="Find Room Name" value=""/>
+    </div>
+    <div id="middle">
+      <input type = "text" id="pwd" placeholder="New Password" value=""/>
+      <input type = "text" id="enterPwd" placeholder="Enter Password" value=""/>
     </div>
     <div id="bottom">
   <button ion-button (click) = "addRoom()" id="newButton"> Add Room </button>
@@ -25,14 +29,17 @@
 <ion-list no-lines>
   <div *ngIf="addedRoom">
       <ion-item *ngFor="let roomCalling of messagesList">
-        <p>{{roomCalling.message}}</p>
+        <p id="time">{{roomCalling.time}}</p>
+        <p id="message">{{roomCalling.message}}</p>
       </ion-item>
   </div>
   </ion-list>
   <ion-list no-lines>
     <div *ngIf="foundRoom">
         <ion-item *ngFor="let finder of messagesList">
-          <p>{{finder.message}}</p>
+          <p id="time">{{finder.time}}</p>
+          <p id="message">{{finder.message}}</p>
+          
         </ion-item>
       </div>
     </ion-list>
