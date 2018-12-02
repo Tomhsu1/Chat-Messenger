@@ -71,7 +71,6 @@ export class MessagePage {
         let rm1 = [];
         data.forEach( data => {
           rm1.push({
-            key: data.key,
             username: data.val().username,
             message: data.val().message,
             time: data.val().time
@@ -83,7 +82,6 @@ export class MessagePage {
         let rm2 = [];
         data.forEach( data => {
           rm2.push({
-            key: data.key,
             username: data.val().username,
             message: data.val().message,
             time: data.val().time
@@ -96,6 +94,8 @@ export class MessagePage {
         this.email = this.user.email;
         console.log(this.email);
         this.emailCut = this.email.split('@')[0];
+      } else {
+        this.navCtrl.push('LoginScreenPage');
       }
       this.name = firebase.database().ref('users/'+this.emailCut);
       this.name.on('value',data => {

@@ -25,6 +25,7 @@ export class RegisterPage {
   username;
   userRef;
   emailCut;
+  str;
   constructor(public navCtrl: NavController, public navParams: NavParams,public fAuth: AngularFireAuth){
 
   }
@@ -32,6 +33,10 @@ export class RegisterPage {
   ionViewDidLoad() {
 
   }
+
+  // emailLower() {
+  //   this.str = this.user.email.toLowerCase();
+  // }
 
   async register() {
     try {
@@ -49,7 +54,7 @@ export class RegisterPage {
           console.log(this.name);
           this.emailCut = this.email.split('@')[0];
       }
-        this.navCtrl.setRoot('MessagePage');
+        this.navCtrl.push('MessagePage');
         this.account = firebase.database().ref('users/'+this.emailCut);
         this.account.push({
           username: this.username

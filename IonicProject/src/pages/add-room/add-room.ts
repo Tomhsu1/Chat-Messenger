@@ -66,6 +66,8 @@ usernameCut;
         this.email = this.user.email;
         console.log(this.email);
         this.emailCut = this.email.split('@')[0];
+      } else {
+        this.navCtrl.push('LoginScreenPage');
       }
       this.name = firebase.database().ref('users/'+this.emailCut);
       this.name.on('value',data => {
