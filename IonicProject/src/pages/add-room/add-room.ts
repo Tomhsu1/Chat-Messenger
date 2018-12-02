@@ -118,7 +118,7 @@ start;
     if (this.passwordString !== this.enterPassword) {
       console.log("not matching");
       this.alert.create({
-        title: 'Incorrect Password!',
+        title: 'Incorrect Password or Room Does Not Exist!',
         buttons: [{
           text: 'Ok',
         }]
