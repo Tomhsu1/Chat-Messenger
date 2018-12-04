@@ -214,4 +214,9 @@ usernameCut;
       end = new Date().getTime();
    }
  }
+  logout() {
+    this.fAuth.auth.signOut();
+    console.log("Logged out");
+    this.navCtrl.setRoot('LoginScreenPage');
+  }
 }
