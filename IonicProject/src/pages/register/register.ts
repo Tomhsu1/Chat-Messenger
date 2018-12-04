@@ -48,7 +48,7 @@ export class RegisterPage {
         console.log("Successfully registered!");
         this.person = firebase.auth().currentUser;
         if (this.user != null) {
-          this.email = this.user.email;
+          this.email = this.user.email.toLowerCase();
           this.name = this.username;
           console.log(this.email);
           console.log(this.name);
