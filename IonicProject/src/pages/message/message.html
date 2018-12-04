@@ -43,7 +43,7 @@
 
  <ion-footer>
   <ion-item>
-   <ion-input placeholder="type here..." [(ngModel)]="newmessage"></ion-input>
+   <ion-input placeholder="type here..." autocorrect="off" autocapitalize="none" [(ngModel)]="newmessage"></ion-input>
    
    <button ion-button clear item-right (click)="send()">Send</button>
   </ion-item>
