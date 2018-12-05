@@ -23,21 +23,21 @@
 </ion-scroll>
       
       <ion-content padding>
-        <ion-spinner name="bubbles"></ion-spinner>
-      
-      <p> Log in using gmail or make an account with us! </p>
-      <input placeholder = " Start typing to see trick...">
-      <div class = "msg">Good Job!</div>
-      
-      <button ion-button color = "secondary"(click) = "this.navCtrl.push('RegisterPage')"> Make an Account </button>
-      <button ion-button color = "danger"(click) = "this.navCtrl.push('LoginScreenPage')"> Login </button>
-      <button ion-button block (click) = "this.navCtrl.push('KobyPage')">This is my page baby</button>
+        <!-- <ion-spinner name="bubbles"></ion-spinner> -->
+        <p id="logo">
+          <img src="https://lh3.googleusercontent.com/u9rdPUwG1iObMOU00b6MUYiQuXKpHAPInZ6o8ZTLZpnwZxjGTP6zE-hqf8fsfkPrXA">
+        </p>
+          <p id="account"> Make an account with us or log in using your email! </p>
+      <!-- <input placeholder = " Start typing to see trick...">
+      <div class = "msg">Good Job!</div> -->
 
-     <div><button (click)="myFunction()">Try it</button></div> 
+      <button ion-button color = "secondary"(click) = "this.navCtrl.push('RegisterPage')" id="make"> Make an Account </button>
+      <button ion-button color = "danger"(click) = "this.navCtrl.push('LoginScreenPage')" id="login"> Login </button>
+      <button ion-button block (click) = "this.navCtrl.push('KobyPage')">About the Makers</button>
 
-     <ion-icon class = "apple" name = "logo-apple" ></ion-icon>
-    
-      
+     <!-- <div><button (click)="myFunction()">Try it</button></div> 
+
+     <ion-icon class = "apple" name = "logo-apple" ></ion-icon>       -->
 
 
     </ion-content>

@@ -1,3 +1,15 @@
 page-message {
-
+    #time {
+        float: right;
+     }
+     #message {
+         display: inline-block;
+         white-space: initial;
+     }
+     #messageBar {
+         white-space: initial;
+     }
+     #username {
+         font-weight: bold;
+     }
 }
