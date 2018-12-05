@@ -27,4 +27,7 @@ export class KobyPage {
    this.navCtrl.push(HomePage);
  }
 
+
+
+
 }
