@@ -14,6 +14,6 @@
     <ion-label>Password</ion-label>
     <ion-input type="password" autocorrect="off" autocapitalize="none" [(ngModel)]="user.password"></ion-input>
   </ion-item>
-  <button ion-button  (click)="login()">Login</button>
-  <button ion-button (click)="this.navCtrl.push('RegisterPage')"> Register </button>
+  <button ion-button (click)="login()" id="login">Login</button>
+  <button ion-button (click)="this.navCtrl.push('RegisterPage')" id="register"> Register </button>
 </ion-content>
