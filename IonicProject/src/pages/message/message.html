@@ -7,13 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>MessagePage</ion-title>
-    
+    <ion-title id="title">Public Messaging</ion-title>
+    <p id="logout">
+    <button ion-button clear item-right (click) = "logout()"> Logout </button>
+    </p>
   </ion-navbar>
-  <button ion-button (click) = "openRoom()">Choose Room</button>
-  <button ion-button (click) = "logout()"> Logout </button>
-  <button ion-button (click) = "this.navCtrl.push('TicPage')"> Play TicTacToe </button>
-  <button ion-button (click) = "this.navCtrl.push('AddRoomPage')"> Add Room </button>
+  <button ion-button block (click) = "openRoom()">Choose Room</button>
+  <button ion-button block (click) = "this.navCtrl.push('TicPage')"> Play TicTacToe </button>
+  <button ion-button block (click) = "this.navCtrl.push('AddRoomPage')"> Add Room </button>
 
 </ion-header>
 

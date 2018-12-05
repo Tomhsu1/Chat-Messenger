@@ -7,7 +7,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Private Rooms</ion-title>
+    <ion-title id="title">Private Rooms</ion-title>
+    <p id="logout">
+    <button ion-button clear item-right (click) = "logout()"> Logout </button>
+      </p>
   </ion-navbar>
     <div id="top">
   <input type = "text" id="new" autocorrect="off" autocapitalize="none" placeholder="New Room Name" value=""/>
@@ -20,11 +23,9 @@
       <input type = "text" id="enterPwd" autocorrect="off" autocapitalize="none" placeholder="Enter Password" value=""/>
     </div>
     <div id="bottom">
-  <button ion-button (click) = "addRoom()" id="newButton"> Add Room </button>
-  <button ion-button (click) = "findRoom()" id="lookButton"> Find Room </button>
-  <button ion-button color = "danger" (click) = "this.navCtrl.push('TicPage')"> TicTacToe </button>
-  <button ion-button (click) = "logout()"> Logout </button>
-
+  <button ion-button block (click) = "addRoom()" id="newButton"> Add Room </button>
+  <button ion-button block (click) = "findRoom()" id="lookButton"> Find Room </button>
+  <button ion-button block color = "danger" (click) = "this.navCtrl.push('TicPage')"> TicTacToe </button>
 
     </div>
 </ion-header>
