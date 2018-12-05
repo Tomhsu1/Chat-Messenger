@@ -5,7 +5,7 @@ import { NavController,AlertController } from 'ionic-angular';
 import { MenuController, Content } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {DatePipe} from '@angular/common';
-
+import { HomePage } from '../home/home';
 /**
  * Generated class for the MessagePage page.
  *
@@ -156,7 +156,7 @@ export class MessagePage {
       logout() {
         this.fAuth.auth.signOut();
         console.log("Logged out");
-        this.navCtrl.setRoot('LoginScreenPage');
+        this.navCtrl.setRoot(HomePage);
       }
       test() {
         this.user = firebase.auth().currentUser;

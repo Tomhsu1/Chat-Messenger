@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
+import { HomePage } from '../home/home';
 /**
  * Generated class for the AddRoomPage page.
  *
@@ -217,6 +217,6 @@ usernameCut;
   logout() {
     this.fAuth.auth.signOut();
     console.log("Logged out");
-    this.navCtrl.setRoot('LoginScreenPage');
+    this.navCtrl.setRoot(HomePage);
   }
 }
