@@ -22,18 +22,18 @@
   <ion-list no-lines>
     <div *ngIf="showRoom1">
       <ion-item *ngFor="let room1 of messagesList1">
-        <p>{{room1.time}}</p>
-        <h3>{{room1.username}}</h3>
-        <p>{{room1.message}}</p>
+        <p id="time">{{room1.time}}</p>
+        <h3 id="username">{{room1.username}}</h3>
+        <p id="message">{{room1.message}}</p>
       </ion-item>
     </div>
   </ion-list>
   <ion-list no-lines>
     <div *ngIf="showRoom2">
       <ion-item *ngFor="let room2 of messagesList2">
-      <p>{{room2.time}}</p>
-      <h3>{{room2.username}}</h3>
-      <p>{{room2.message}}</p>
+      <p id="time">{{room2.time}}</p>
+      <h3 id="username">{{room2.username}}</h3>
+      <p id="message">{{room2.message}}</p>
       </ion-item>
     </div>
   </ion-list>
@@ -43,7 +43,7 @@
 
  <ion-footer>
   <ion-item>
-   <ion-input placeholder="type here..." autocorrect="off" autocapitalize="none" [(ngModel)]="newmessage"></ion-input>
+   <ion-input placeholder="type here..." autocorrect="off" autocapitalize="none" id="messageBar" [(ngModel)]="newmessage"></ion-input>
    
    <button ion-button clear item-right (click)="send()">Send</button>
   </ion-item>
