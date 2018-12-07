@@ -31,6 +31,7 @@ name;
 passwordRef;
 enterPassword;
 callingPassword;
+checkRoom;
 foundRoom = false;
 foundPassword;
 passwordString;
