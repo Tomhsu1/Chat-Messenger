@@ -42,6 +42,8 @@ emailCut;
 username;
 usernameString;
 usernameCut;
+addRoomPass;
+roomCallingName;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alert: AlertController, public fAuth: AngularFireAuth) {
   this.roomReference = firebase.database().ref('privateRooms');
   
@@ -93,18 +95,39 @@ usernameCut;
     this.roomCalling = firebase.database().ref('privateRooms/'+this.newRoom);
     console.log(this.newRoom);
     console.log(this.password);
-    this.alert.create ({
+    this.addedRoom = true;
+    this.foundRoom = false;
+    // this.roomCallingPass.on('value', data => {
+    //   let recreated = [];
+    //   data.forEach( data => {
+    //     recreated.push({
+    //       password: data.val().password
+    //     })
+    //   });
+    //   this.addRoomPass = recreated;
+    //   console.log(this.addRoomPass);
+    //   if (this.password !== this.addRoomPass) {
+    //     this.alert.create({
+    //       title: 'Room Already Exists!',
+    //       buttons: [{
+    //         text: 'Ok',
+    //       }]
+    //     }).present();
+    //   } else {
+        this.alert.create ({
           title: 'New Room: '+this.newRoom,
           buttons: [{
             text: 'Got it!'
           }
         ]
         }).present();
-    this.addedRoom = true;
-    this.foundRoom = false;
-    this.roomCalling.push({
-      password: this.password
-    });
+        this.roomCalling.push({
+          password: this.password
+        });
+    //   }
+    // });
+    
+    
   }
 
   findRoom(){
